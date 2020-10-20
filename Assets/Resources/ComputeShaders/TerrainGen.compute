@@ -1,0 +1,89 @@
+﻿#pragma kernel GenerateNoise
+#include "/Utils/SNoise.cginc"
+
+struct NoiseOptionsStruct
+{
+    float Scale;
+    float Amplitude;
+    int Octaves;
+    float Lacunarity;
+    float Persistence;
+};
+
+struct NoiseOffsetsStruct
+{
+    float2 Fire;
+    float2 Water;
+    float2 Earth;
+    float2 Air;
+    float2 Light;
+    float2 Dark;
+    float2 Resource;
+    float2 Heightmap;
+};
+
+struct NoiseResultStruct
+{
+    float2 Position;
+    float Fire;
+    float Water;
+    float Earth;
+    float Air;
+    float Light;
+    float Dark;
+    float Resource;
+    float Height;
+};
+
+
+// Input
+RWStructuredBuffer<NoiseOffsetsStruct> NoiseOffsets;
+RWStructuredBuffer<NoiseOptionsStruct> BiomeOptions;
+RWStructuredBuffer<NoiseOptionsStruct> ResourceOptions;
+RWStructuredBuffer<NoiseOptionsStruct> HeightmapOptions;
+float4 ChunkPosition; // x, y => position, w => chunk size
+
+// Output
+RWStructuredBuffer<NoiseResultStruct> NoiseResults;
+
+float2 idToTilePosition(in uint3 id)
+{
+    return ChunkPosition.xy * ChunkPosition.w + id.xy;
+}
+
+int idToIndex(in uint3 id)
+{
+    return id.y * int(ChunkPosition.w) + id.x;
+}
+
+void generateNoiseMap(out float output, in float2 tilePosition, in NoiseOptionsStruct noiseOptions, in float2 noiseOffset)
+{
+    output = snoise(
+        float3(tilePosition.xy, 0.0),
+        float3(noiseOffset.xy, 0.0),
+        noiseOptions.Scale,
+        noiseOptions.Amplitude,
+        noiseOptions.Octaves,
+        noiseOptions.Lacunarity,
+        noiseOptions.Persistence
+    );
+}
+
+[numthreads(8,8,1)]
+void GenerateNoise (uint3 id : SV_DispatchThreadID)
+{
+    float2 tilePosition = idToTilePosition(id);
+    int index = idToIndex(id);
+
+    NoiseResultStruct result;
+    result.Position = tilePosition;
+    generateNoiseMap(result.Fire, tilePosition, BiomeOptions[0], NoiseOffsets[0].Fire);
+    generateNoiseMap(result.Water, tilePosition, BiomeOptions[0], NoiseOffsets[0].Water);
+    generateNoiseMap(result.Earth, tilePosition, BiomeOptions[0], NoiseOffsets[0].Earth);
+    generateNoiseMap(result.Air, tilePosition, BiomeOptions[0], NoiseOffsets[0].Air);
+    generateNoiseMap(result.Light, tilePosition, BiomeOptions[0], NoiseOffsets[0].Light);
+    generateNoiseMap(result.Dark, tilePosition, BiomeOptions[0], NoiseOffsets[0].Dark);
+    generateNoiseMap(result.Resource, tilePosition, ResourceOptions[0], NoiseOffsets[0].Resource);
+    generateNoiseMap(result.Height, tilePosition, HeightmapOptions[0], NoiseOffsets[0].Heightmap);
+    NoiseResults[index] = result;
+}

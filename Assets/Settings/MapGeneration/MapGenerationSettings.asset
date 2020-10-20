@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a1e245a16728940883ae57d4ecfa92, type: 3}
+  m_Name: MapGenerationSettings
+  m_EditorClassIdentifier: 
+  SeaLevel: -0.76
+  ResourceThreshold: 0.775
+  BiomeSettings: {fileID: 11400000, guid: ebd39057cd023664b8814bd27ca85a9f, type: 2}
+  ResourceSettings: {fileID: 11400000, guid: 5f0f96387a938aa46b6dfa786951fa69, type: 2}
+  HeightmapSettings: {fileID: 11400000, guid: ef26a8560eac8f34e8a7987f625ca427, type: 2}

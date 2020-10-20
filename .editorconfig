@@ -1,0 +1,20 @@
+root = true
+
+[*.cs]
+# Indentation and spacing
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+
+# Organize usings
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = true
+
+# New line preferences
+csharp_new_line_before_open_brace = none
+csharp_new_line_before_catch = false
+csharp_new_line_before_else = false
+csharp_new_line_before_finally = false
+csharp_new_line_before_members_in_anonymous_types = false
+csharp_new_line_before_members_in_object_initializers = false
+csharp_new_line_between_query_expression_clauses = false
