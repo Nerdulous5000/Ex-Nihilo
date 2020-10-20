@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3656e0e4a6426e346b8cdd237a403878, type: 3}
   m_Name: BiomeNoiseSettings
   m_EditorClassIdentifier: 
-  Scale: 800
-  Amplitude: 0.62
-  Octaves: 8
-  Lacunarity: 1.94
-  Persistence: 0.935
+  Scale: 50
+  Amplitude: 1
+  Octaves: 1
+  Lacunarity: 2
+  Persistence: 0.9

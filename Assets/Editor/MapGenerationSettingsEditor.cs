@@ -4,39 +4,34 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(MapGenerationSettings))]
-public class MapGenerationSettingsEditor : Editor
-{
+public class MapGenerationSettingsEditor : Editor {
     static readonly string[] hiddenMapGenerationSettingsProps = new string[] { "m_Script", "BiomeSettings", "ResourceSettings", "HeightmapSettings" };
     static readonly string[] hiddenNoiseSettingsProps = new string[] { "m_Script" };
 
-    MapGenerationSettings settings;
+    MapGenerationSettings mapGenSettings;
 
-    public override void OnInspectorGUI()
-    {
+    public override void OnInspectorGUI() {
         serializedObject.UpdateIfRequiredOrScript();
         DrawPropertiesExcluding(serializedObject, hiddenMapGenerationSettingsProps);
+        DrawNoiseSettingsEditor("Biome Settings", ref mapGenSettings.BiomeSettings);
+        DrawNoiseSettingsEditor("Resource Settings", ref mapGenSettings.ResourceSettings);
+        DrawNoiseSettingsEditor("Heightmap Settings", ref mapGenSettings.HeightmapSettings);
         serializedObject.ApplyModifiedProperties();
 
-        DrawNoiseSettingsEditor("Biome Settings", settings.BiomeSettings);
-        DrawNoiseSettingsEditor("Resource Settings", settings.ResourceSettings);
-        DrawNoiseSettingsEditor("Heightmap Settings", settings.HeightmapSettings);
     }
 
-    void DrawNoiseSettingsEditor(string label, NoiseSettings settings)
-    {
+    void DrawNoiseSettingsEditor(string label, ref NoiseSettings noiseSettings) {
         EditorGUILayout.Space();
-        EditorGUILayout.ObjectField(label, settings, typeof(NoiseSettings), false);
-        if (settings != null)
-        {
-            Editor editor = CreateEditor(settings);
+        noiseSettings = (NoiseSettings)EditorGUILayout.ObjectField(label, noiseSettings, typeof(NoiseSettings), false);
+        if (noiseSettings != null) {
+            Editor editor = CreateEditor(noiseSettings);
             editor.serializedObject.UpdateIfRequiredOrScript();
             DrawPropertiesExcluding(editor.serializedObject, hiddenNoiseSettingsProps);
             editor.serializedObject.ApplyModifiedProperties();
         }
     }
 
-    void OnEnable()
-    {
-        settings = (MapGenerationSettings)target;
+    void OnEnable() {
+        mapGenSettings = (MapGenerationSettings)target;
     }
 }
