@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc22c5b93eb6514d93d7b75ec0fbf5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3656e0e4a6426e346b8cdd237a403878, type: 3}
   m_Name: BiomeNoiseSettings
   m_EditorClassIdentifier: 
   Scale: 800

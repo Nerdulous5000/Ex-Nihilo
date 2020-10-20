@@ -21,12 +21,12 @@ public class HotbarController : MonoBehaviour {
             itemContainer.transform.SetParent(transform, false);
             items.Add(itemContainer);
         }
-        setActiveContainer(0);
     }
 
     // Update is called once per frame
     void Update() {
 
+        setActiveContainer(0);
     }
     public void SetSlot(int index, Sprite sprite) {
         if (index >= MaxCount) {
