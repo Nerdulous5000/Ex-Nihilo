@@ -20,7 +20,6 @@ public class ClickEntityPlacer : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("Clicked at: " + SelectionManager.HoveredTile);
             bool spawned = EntityManager.Instance.Spawn("Storage", SelectionManager.HoveredTile);
             if (!spawned) {
                 Debug.Log("Could not spawn entity at location: " + SelectionManager.HoveredTile);

@@ -10,7 +10,7 @@ public class EntityManager : MonoBehaviour {
     Dictionary<Vector2Int, uint> entityIdMap;
 
     // Keeps a reference of all active entities indexed a unique id
-    Dictionary<uint, Entity> entityList;
+    Dictionary<uint, EntityBehaviour> entityList;
 
     [SerializeField]
     Tilemap tilemap = null;
@@ -28,19 +28,19 @@ public class EntityManager : MonoBehaviour {
     }
     void Initialize() {
         entityIdMap = new Dictionary<Vector2Int, uint>();
-        entityList = new Dictionary<uint, Entity>();
+        entityList = new Dictionary<uint, EntityBehaviour>();
         tilemap.ClearAllTiles();
     }
 
     // Checks to see if the entity can be placed, then places entity with bool confirmation
     public bool Spawn(string entityName, Vector2Int position) {
-        Entity refEntity = EntityTable.Entities[entityName];
+        EntityData refEntity = EntityTable.Entities[entityName];
         if (!CanSpawn(refEntity, position)) {
             return false;
         }
-        Entity entity = Instantiate(refEntity);
-        entity.Initialize();
-        entity.Position = position;
+        EntityBehaviour entity = EntityBehaviour.Initialize(refEntity, position);
+        // entity.Initialize();
+        // entity.Position = position;
         for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
             for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
                 entityIdMap[new Vector2Int(x, y)] = entity.Id;
@@ -51,7 +51,7 @@ public class EntityManager : MonoBehaviour {
         return true;
     }
 
-    public bool CanSpawn(Entity entity, Vector2Int position) {
+    public bool CanSpawn(EntityData entity, Vector2Int position) {
 
         for (int y = position.y; y < position.y + entity.Height; y++) {
             for (int x = position.x; x < position.x + entity.Width; x++) {
@@ -67,12 +67,12 @@ public class EntityManager : MonoBehaviour {
         if (IsNullAt(pos)) {
             return false;
         }
-        Entity entity = At(pos);
+        EntityBehaviour entity = At(pos);
 
-        // Clear tile on tilemap
+        // // Clear tile on tilemap
         tilemap.SetTile((Vector3Int)entity.Position, null);
 
-        // Clear spaces on id map
+        // // Clear spaces on id map
         for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
             for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
                 entityIdMap.Remove(new Vector2Int(x, y));
@@ -85,7 +85,7 @@ public class EntityManager : MonoBehaviour {
     }
 
     // Returns entity object referenced to at position
-    public Entity At(Vector2Int pos) {
+    public EntityBehaviour At(Vector2Int pos) {
         if (IsNullAt(pos)) {
             return null;
         }
@@ -98,7 +98,7 @@ public class EntityManager : MonoBehaviour {
         return !entityIdMap.ContainsKey(pos);
     }
 
-    public Entity EntityById(uint id) {
+    public EntityBehaviour EntityById(uint id) {
         if (entityList.ContainsKey(id)) {
             return entityList[id];
         } else {
