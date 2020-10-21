@@ -27,6 +27,8 @@ sysinfo.txt
 .consulo/
 /*.tmp
 /*.svd
+/*.sln
+/*.csproj
 
 # ================ #
 # VS Code Settings #
