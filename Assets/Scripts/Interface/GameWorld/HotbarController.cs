@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HotbarController : MonoBehaviour {
 
@@ -9,38 +10,49 @@ public class HotbarController : MonoBehaviour {
 
     [SerializeField]
     ItemContainer refContainer = null;
-    List<ItemContainer> items;
-    int activeIndex = 0;
+    List<ItemContainer> containers;
+    public int ActiveIndex = 0;
     [SerializeField]
     Image highlightImage = null;
+    [SerializeField]
+    TextMeshProUGUI text = null;
 
-    void Start() {
-        items = new List<ItemContainer>();
+
+    void Awake() {
+        containers = new List<ItemContainer>();
         for (int n = 0; n < MaxCount; n++) {
             ItemContainer itemContainer = Instantiate(refContainer);
             itemContainer.transform.SetParent(transform, false);
-            items.Add(itemContainer);
+            containers.Add(itemContainer);
         }
+    }
+
+    void Start() {
+        SetActiveContainer(0);
     }
 
     // Update is called once per frame
     void Update() {
-
-        setActiveContainer(0);
+        for (int n = 0; n < MaxCount; n++) {
+            if (Input.GetButtonDown("Hotbar" + n)) {
+                SetActiveContainer(n);
+            }
+        }
     }
-    public void SetSlot(int index, Sprite sprite) {
+    public void SetSlot(int index, Item item) {
         if (index >= MaxCount) {
             return;
         }
-        items[index].SetDisplayedItem(sprite);
+        containers[index].SetItem(item);
     }
-    void setActiveContainer(int index) {
+    void SetActiveContainer(int index) {
         if (index >= MaxCount) {
             return;
         }
-        activeIndex = index;
-        highlightImage.transform.position = items[index].transform.position;
-        // TODO: Update selection manager
+        Item currentItem = containers[index].Item;
+        highlightImage.transform.position = containers[index].transform.position;
+        SelectionManager.Instance.ActiveItem = currentItem;
+        text.text = currentItem == null ? "" : currentItem.Name;
     }
 
 }

@@ -6,8 +6,9 @@ using UnityEngine;
 public class Item : ScriptableObject {
     public Sprite Sprite;
     public string Name;
-    public bool IsEntity = false;
-    public EntityData EntityData;
+    // public bool IsEntity = false;
+    public bool IsEntity { get {return EntityName != "";}}
+    public string EntityName = "";
     public int Id;
 
 }

@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class ItemContainer : MonoBehaviour {
     [SerializeField]
     private Image display = null;
-    // void Start()
-    // {
-
-    // }
-
-    // void Update()
-    // {
-
-    // }
-    public void SetDisplayedItem(Sprite sprite) {
-        display.sprite = sprite;
+    public Item Item { get; private set; }
+    
+    public void SetItem(Item item) {
+        Item = item;
+        display.sprite = item.Sprite;
     }
+    public void Clear() {
+        Item = null;
+        display.sprite = null;
+    }
+
 }
