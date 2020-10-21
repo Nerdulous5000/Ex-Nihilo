@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Interface\GameWorld\ItemContainer.cs" />
      <Compile Include="Assets\Scripts\Interface\GameWorld\SelectedTileMover.cs" />
      <Compile Include="Assets\Scripts\Interface\MainMenu\MainMenuManager.cs" />
+     <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Map\Biomes\Biome.cs" />
      <Compile Include="Assets\Scripts\Map\MapChunk.cs" />
      <Compile Include="Assets\Scripts\Map\MapGenerationSettings.cs" />
@@ -60,11 +61,9 @@
      <Compile Include="Assets\Scripts\Utils\Camera\PerfectPixelZoom.cs" />
      <Compile Include="Assets\Scripts\Utils\Direction.cs" />
      <Compile Include="Assets\Scripts\Utils\EntityInterface.cs" />
-     <Compile Include="Assets\Scripts\Utils\Item\Item.cs" />
      <Compile Include="Assets\Scripts\Utils\Noise\NoiseSettings.cs" />
      <Compile Include="Assets\Scripts\Utils\Noise\SimplexNoise.cs" />
      <Compile Include="Assets\Scripts\Utils\Timer.cs" />
-     <Compile Include="Assets\Scripts\Utils\UI\Tooltip.cs" />
      <None Include="Assets\Packages\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\Packages\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\Packages\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
