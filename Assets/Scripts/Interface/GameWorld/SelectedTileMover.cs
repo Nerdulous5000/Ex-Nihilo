@@ -13,7 +13,7 @@ public class SelectedTileMover : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Enabled) {
-            transform.position = (Vector3Int)SelectionManager.HoveredTile;
+            transform.position = (Vector3Int)SelectionManager.Instance.HoveredTile;
         }
     }
     public void Enable() {
