@@ -23,20 +23,30 @@ public class TestEntityPlacer : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetMouseButtonDown(0) && SelectionManager.Instance.ActiveItem != null) {
-            if (SelectionManager.Instance.ActiveItem.IsEntity) {
-                bool spawned = EntityManager.Instance.Spawn(SelectionManager.Instance.ActiveItem.EntityName, SelectionManager.Instance.HoveredTile);
-                if (!spawned) {
-                    Debug.Log("Could not spawn entity at location: " + SelectionManager.Instance.HoveredTile);
+        Vector2Int hoverPos = SelectionManager.Instance.HoveredTile;
+        if (Input.GetMouseButtonDown(0)) {
+
+            // Interact with Entity if already exists
+            if (!EntityManager.Instance.IsNullAt(hoverPos)) {
+                EntityManager.Instance.At(hoverPos).OnUse();
+            }
+
+            // Place 
+            if (SelectionManager.Instance.ActiveItem != null) {
+                if (SelectionManager.Instance.ActiveItem.IsEntity) {
+                    bool spawned = EntityManager.Instance.Spawn(SelectionManager.Instance.ActiveItem.EntityName, SelectionManager.Instance.HoveredTile);
+                    // if (!spawned) {
+                    //     Debug.Log("Could not spawn entity at location: " + hoverPos);
+                    // }
                 }
             }
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            bool killed = EntityManager.Instance.Kill(SelectionManager.Instance.HoveredTile);
-            if (!killed) {
-                Debug.Log("Could not remove entity at location: " + SelectionManager.Instance.HoveredTile);
-            }
+            bool killed = EntityManager.Instance.Kill(hoverPos);
+            // if (!killed) {
+            //     Debug.Log("Could not remove entity at location: " + hoverPos);
+            // }
         }
     }
 }

@@ -33,7 +33,17 @@ public class EntityBehaviour : MonoBehaviour {
         return instance;
     }
 
+    public virtual void OnSpawn() {
+        Debug.Log("Entity spawned");
+    }
 
+    public virtual void OnUse() {
+        Debug.Log("Entity did the thing");
+    }
+
+    public virtual void OnKill() {
+        Debug.Log("Entity has died");
+    }
 
     static uint AssignId() {
         return idCount++;

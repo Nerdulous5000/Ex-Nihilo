@@ -48,6 +48,7 @@ public class EntityManager : MonoBehaviour {
         }
         entityList[entity.Id] = entity;
         tilemap.SetTile((Vector3Int)entity.Position, entity.Tile);
+        entity.OnSpawn();
         return true;
     }
 
@@ -78,9 +79,9 @@ public class EntityManager : MonoBehaviour {
                 entityIdMap.Remove(new Vector2Int(x, y));
             }
         }
+        entity.OnKill();
         Destroy(entity.gameObject);
         entityList.Remove(entity.Id);
-
         return true;
     }
 
