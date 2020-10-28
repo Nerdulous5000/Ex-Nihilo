@@ -11,6 +11,7 @@ public class EntityBehaviour : MonoBehaviour {
     public Sprite Sprite { get { return data.Sprite; } }
     public int Width { get { return data.Width; } }
     public int Height { get { return data.Height; } }
+    public ItemInterface Interface { get { return data.Interface; } }
     public virtual string TooltipString {
         get {
             return "Id: " + Id + "\nWidth: " + Width + "\nHeight: " + Height;

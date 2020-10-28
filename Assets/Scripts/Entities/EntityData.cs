@@ -9,6 +9,7 @@ public class EntityData : ScriptableObject
     public Sprite Sprite;
     public int Width;
     public int Height;
+    public ItemInterface Interface;
     // public Behaviour;
     
 }
