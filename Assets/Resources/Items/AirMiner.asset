@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: e12adaee5e854d7488c07abc8522442b, type: 3}
   Name: Air Miner
-  EntityDataPath: Entities/AirMiner
+  EntityName: AirMiner
   Id: 1
