@@ -4,8 +4,9 @@ using UnityEngine;
 
 // Unable to be instantiated
 // Must create derivative with defined size 
-public abstract class ItemInterface : ScriptableObject {
 
+[CreateAssetMenu(fileName = "ItemInterface", menuName = "Gameplay/ItemInterface")]
+public class ItemInterface : ScriptableObject {
 
     public enum IODirection {
         Null = 0,
@@ -13,6 +14,9 @@ public abstract class ItemInterface : ScriptableObject {
         Output = 2,
     };
     Dictionary<Direction, IODirection[]> IOSlots;
+
+    public int Width;
+    public int Height;
 
     // Through array index goes from left to right.
     // All other directions are rotated from top *See below
@@ -22,7 +26,20 @@ public abstract class ItemInterface : ScriptableObject {
     // Left  : Bottom ->  Top
     // Down  : Right  ->  Left
 
+    public List<IODirection> right;
+    public List<IODirection> up;
+    public List<IODirection> left;
+    public List<IODirection> down;
+
+
     // TODO: Add intuitive GUI to change io
+
+
+    void OnEnable() {
+        if(right == null || up == null || left == null || down == null) {
+            Initialize(Width, Height);
+        }
+    }
 
     protected void Initialize(int width, int height) {
         for (int n = 0; n < width; n++) {
@@ -69,7 +86,27 @@ public abstract class ItemInterface : ScriptableObject {
         IOSlots[direction][index] = IODirection.Output;
     }
 
-    public abstract Vector2Int GetTile(Vector2Int position, Direction direction, uint index);
+    public Vector2Int GetTile(Vector2Int position, Direction direction, int index = 0) {
+        if((direction == Direction.Right || direction == Direction.Left) && index >= Height) {
+            return new Vector2Int();
+        }
+        if ((direction == Direction.Up || direction == Direction.Down) && index >= Width) {
+            return new Vector2Int();
+        }
+        switch(direction) {
+            case Direction.Right:
+                return position + new Vector2Int(Width, Height - 1 - index);
+            case Direction.Up:
+                return new Vector2Int(index, Height);
+            case Direction.Left:
+                return new Vector2Int(-1, index);
+            case Direction.Down:
+                return position + new Vector2Int(Width - 1 - index, -1);
+            default:
+                return new Vector2Int();
+        }
+
+    }
 
 }
 
