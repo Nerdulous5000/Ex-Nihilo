@@ -8,6 +8,7 @@ public class EntityBehaviour : MonoBehaviour {
     public uint Id { get; private set; }
     public Tile Tile { get; protected set; }
     public Vector2Int Position { get; protected set; }
+
     public Sprite Sprite { get { return data.Sprite; } }
     public int Width { get { return data.Width; } }
     public int Height { get { return data.Height; } }
@@ -20,7 +21,7 @@ public class EntityBehaviour : MonoBehaviour {
     [SerializeField]
     protected EntityData data;
     static uint idCount = 0;
-    EntityManager manager;
+    // EntityManager manager;
 
     public static EntityBehaviour Initialize(EntityData entityData, Vector2Int position) {
 
@@ -32,6 +33,9 @@ public class EntityBehaviour : MonoBehaviour {
         tile.sprite = instance.Sprite;
         instance.Tile = tile;
         return instance;
+    }
+    static uint AssignId() {
+        return idCount++;
     }
 
     public virtual void OnSpawn() {
@@ -46,7 +50,24 @@ public class EntityBehaviour : MonoBehaviour {
         Debug.Log("Entity has died");
     }
 
-    static uint AssignId() {
-        return idCount++;
+    bool Give<T>(T item)
+    {
+        return false;
     }
+    bool Recieve<T>(T item)
+    {
+        return false;
+    }
+    public bool IsAdjacent(Vector2Int location) {
+        bool adj = (
+            // Vertical bounds
+            ((location.x >= Position.x && location.x < Position.x + Width) ||
+            // Horizontal bounds 
+            (location.y >= Position.y && location.y < Position.y + Height)) &&
+            // 1 unit away
+            ((location.x >= Position.x -1   && location.x <= Position.x + Width) && (location.y >= Position.y - 1 && location.y <= Position.y + Height))
+        );
+        return adj;
+    }
+
 }
