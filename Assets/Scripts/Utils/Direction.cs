@@ -56,4 +56,25 @@ static class DirectionExtensions {
         }
     }
 
+    // If diagonal, favors vertical directions
+    // If zero vector, returns up
+    public static Direction FromVector2(Vector2 vec) {
+        if (vec.x <= vec.y) {
+            return vec.x >= 0 ? Direction.Up : Direction.Down;
+        } else {
+            return vec.x >= 0 ? Direction.Right : Direction.Left;
+        }
+    }
+
+    // If diagonal, favors vertical directions
+    // If zero vector, returns up
+    public static Direction FromVector2Int(Vector2Int vec) {
+        if (vec.x <= vec.y) {
+            return vec.x >= 0 ? Direction.Up : Direction.Down;
+        } else {
+            return vec.x >= 0 ? Direction.Right : Direction.Left;
+        }
+    }
+
+
 }
