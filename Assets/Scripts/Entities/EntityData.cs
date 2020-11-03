@@ -10,6 +10,5 @@ public class EntityData : ScriptableObject
     public int Width;
     public int Height;
     public ItemInterface Interface;
-    // public Behaviour;
     
 }

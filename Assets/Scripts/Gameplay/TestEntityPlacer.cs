@@ -15,13 +15,12 @@ public class TestEntityPlacer : MonoBehaviour {
     List<Item> hotbarItems = new List<Item>();
 
     void Start() {
-
+        // Populate hotbar
         for (int n = 0; n < hotbarItems.Count; n++) {
             hotbar.SetSlot(n, hotbarItems[n]);
         }
     }
 
-    // Update is called once per frame
     void Update() {
         Vector2Int hoverPos = SelectionManager.Instance.HoveredTile;
         if (Input.GetMouseButtonDown(0)) {
@@ -42,6 +41,7 @@ public class TestEntityPlacer : MonoBehaviour {
             }
         }
 
+        // Kill entity
         if (Input.GetMouseButtonDown(1)) {
             bool killed = EntityManager.Instance.Kill(hoverPos);
             // if (!killed) {

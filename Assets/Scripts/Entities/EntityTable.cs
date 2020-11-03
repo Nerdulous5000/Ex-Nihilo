@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class EntityTable {
-    public static Dictionary<string, EntityData> Entities = new Dictionary<string, EntityData>()
+    public static Dictionary<string, EntityBehaviour> Entities = new Dictionary<string, EntityBehaviour>()
     {
-        {"AirMiner", Resources.Load<EntityData>("Entities/AirMiner")},
-        {"Storage", Resources.Load<EntityData>("Entities/Storage")},
+        {"AirMiner", Resources.Load<EntityBehaviour>("Entities/AirMiner")},
+        {"Storage", Resources.Load<EntityBehaviour>("Entities/Storage")},
+        {"Conveyor", Resources.Load<EntityBehaviour>("Entities/Conveyor")},
     };
 }

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f7698c7b05393848a35b3a43e931ed2, type: 3}
-  m_Name: Storage
+  m_Script: {fileID: 11500000, guid: f984d295cdf29e242a3c5c64b0e37feb, type: 3}
+  m_Name: Conveyor
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 9f6e61c9ff2b56044b1b4aafff17e6be, type: 3}
-  Width: 2
-  Height: 2
+  Sprite: {fileID: 0}
+  Name: 
+  EntityName: 
+  Id: 0

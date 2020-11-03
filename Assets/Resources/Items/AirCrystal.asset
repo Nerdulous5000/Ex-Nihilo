@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f7698c7b05393848a35b3a43e931ed2, type: 3}
-  m_Name: AirMiner
+  m_Script: {fileID: 11500000, guid: f984d295cdf29e242a3c5c64b0e37feb, type: 3}
+  m_Name: AirCrystal
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: e12adaee5e854d7488c07abc8522442b, type: 3}
-  Width: 1
-  Height: 1
+  Sprite: {fileID: 21300000, guid: ab85cb406908a854ca5254bb21ef99ba, type: 3}
+  Name: Air Crystal
+  EntityName: 
+  Id: 2

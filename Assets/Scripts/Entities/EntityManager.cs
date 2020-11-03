@@ -32,15 +32,21 @@ public class EntityManager : MonoBehaviour {
         tilemap.ClearAllTiles();
     }
 
+
     // Checks to see if the entity can be placed, then places entity with bool confirmation
     public bool Spawn(string entityName, Vector2Int position) {
-        EntityData refEntity = EntityTable.Entities[entityName];
-        if (!CanSpawn(refEntity, position)) {
+        if(!EntityTable.Entities.ContainsKey(entityName)) {
             return false;
         }
-        EntityBehaviour entity = EntityBehaviour.Initialize(refEntity, position);
-        // entity.Initialize();
+        EntityBehaviour entity = Instantiate(EntityTable.Entities[entityName]);
+        if (!CanSpawn(entity, position)) {
+            return false;
+        }
+        // EntityBehaviour entity = EntityBehaviour.Initialize(refEntity, position);
+
+        entity.Initialize(position);
         // entity.Position = position;
+
         for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
             for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
                 entityIdMap[new Vector2Int(x, y)] = entity.Id;
@@ -52,7 +58,7 @@ public class EntityManager : MonoBehaviour {
         return true;
     }
 
-    public bool CanSpawn(EntityData entity, Vector2Int position) {
+    public bool CanSpawn(EntityBehaviour entity, Vector2Int position) {
 
         for (int y = position.y; y < position.y + entity.Height; y++) {
             for (int x = position.x; x < position.x + entity.Width; x++) {
