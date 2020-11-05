@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f984d295cdf29e242a3c5c64b0e37feb, type: 3}
   m_Name: Conveyor
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 0}
-  Name: 
-  EntityName: 
-  Id: 0
+  Sprite: {fileID: 21300000, guid: a39ca1d3965347a4ca72038e3f73dd01, type: 3}
+  Name: Conveyor
+  EntityName: Conveyor
+  Id: 3

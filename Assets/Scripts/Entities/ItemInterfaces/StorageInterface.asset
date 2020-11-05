@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6118c7382962c4783774798f785e36, type: 3}
   m_Name: StorageInterface
   m_EditorClassIdentifier: 
-  Width: 0
-  Height: 0
-  right: 
-  up: 
-  left: 
-  down: 
+  Width: 2
+  Height: 2
+  right: 0100000001000000
+  up: 0100000001000000
+  left: 0100000001000000
+  down: 0100000001000000

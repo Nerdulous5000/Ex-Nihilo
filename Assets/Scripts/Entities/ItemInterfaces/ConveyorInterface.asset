@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd6118c7382962c4783774798f785e36, type: 3}
-  m_Name: ItemInterface
+  m_Name: ConveyorInterface
   m_EditorClassIdentifier: 
-  Width: 0
-  Height: 0
-  right: 
-  up: 
-  left: 
-  down: 
+  Width: 1
+  Height: 1
+  right: 00000000
+  up: 02000000
+  left: 00000000
+  down: 01000000
