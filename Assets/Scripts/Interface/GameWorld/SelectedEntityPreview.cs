@@ -18,6 +18,8 @@ public class SelectedEntityPreview : MonoBehaviour
                 spriteRenderer.sprite = activeItem.Sprite;
                 Vector2Int pos = SelectionManager.Instance.HoveredTile;
                 transform.position = new Vector3(pos.x, pos.y, 0) + new Vector3(.5f, .5f, 0);
+                int rotationAmount = SelectionManager.Instance.SelecetedRotation;
+                transform.rotation = Quaternion.Euler(0, 0, 90 * rotationAmount);
             }
         }
     }
