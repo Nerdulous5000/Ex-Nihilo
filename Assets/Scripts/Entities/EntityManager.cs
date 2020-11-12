@@ -39,29 +39,64 @@ public class EntityManager : MonoBehaviour {
             return false;
         }
         EntityBehaviour entity = Instantiate(EntityTable.Entities[entityName]);
-        if (!CanSpawn(entity, position)) {
+
+        int rotationAmount = SelectionManager.Instance.SelecetedRotation;
+
+        entity.Initialize(position, rotationAmount);
+        if (!CanSpawn(entity)) {
+            Destroy(entity.gameObject);
             return false;
         }
-        // EntityBehaviour entity = EntityBehaviour.Initialize(refEntity, position);
 
-        entity.Initialize(position);
-        // entity.Position = position;
+        PlaceInTileMap(entity);
+        PlaceInIdMap(entity);
+        PlaceInIdList(entity);
 
-        for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
-            for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
-                entityIdMap[new Vector2Int(x, y)] = entity.Id;
-            }
-        }
-        entityList[entity.Id] = entity;
-        tilemap.SetTile((Vector3Int)entity.Position, entity.Tile);
         entity.OnSpawn();
+
         return true;
     }
 
-    public bool CanSpawn(EntityBehaviour entity, Vector2Int position) {
+    void PlaceInTileMap(EntityBehaviour entity) {
+        entity.Tile.transform *= Matrix4x4.Rotate(Quaternion.Euler(0, 0, 90 * entity.Rotation));
+        tilemap.SetTile((Vector3Int)entity.Position, entity.Tile);
+    }
+    void PlaceInIdMap(EntityBehaviour entity) {
+        // Vector2Int anchorPos = entity.Position;
 
-        for (int y = position.y; y < position.y + entity.Height; y++) {
-            for (int x = position.x; x < position.x + entity.Width; x++) {
+        // for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
+        //     for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
+        //         entityIdMap[new Vector2Int(x, y)] = entity.Id;
+        //     }
+        // }
+
+        // Vector3 offset = Quaternion.Euler(0, 0, 90 * entity.Rotation) * new Vector2(entity.Width, entity.Height);
+        // Vector2Int farPos = entity.Position + new Vector2Int(Mathf.FloorToInt(offset.x), Mathf.FloorToInt(offset.y));
+
+
+        for (int y = entity.Extents.Min.y; y <= entity.Extents.Max.y; y++) {
+            for (int x = entity.Extents.Min.x; x <= entity.Extents.Max.x; x++) {
+                entityIdMap[new Vector2Int(x, y)] = entity.Id;
+            }
+        }
+    }
+    void PlaceInIdList(EntityBehaviour entity) {
+        entityList[entity.Id] = entity;
+    }
+
+    public bool CanSpawn(EntityBehaviour entity) {
+
+        // for (int y = position.y; y < position.y + entity.Height; y++) {
+        //     for (int x = position.x; x < position.x + entity.Width; x++) {
+        //         if (!IsNullAt(new Vector2Int(x, y))) {
+        //             return false;
+        //         }
+        //     }
+        // }
+
+        for (int y = entity.Extents.Min.y; y <= entity.Extents.Max.y; y++) {
+            for (int x = entity.Extents.Min.x; x <= entity.Extents.Max.x; x++) {
+                // entityIdMap[new Vector2Int(x, y)] = entity.Id;
                 if (!IsNullAt(new Vector2Int(x, y))) {
                     return false;
                 }
@@ -76,19 +111,32 @@ public class EntityManager : MonoBehaviour {
         }
         EntityBehaviour entity = At(pos);
 
-        // // Clear tile on tilemap
-        tilemap.SetTile((Vector3Int)entity.Position, null);
+        RemoveFromTileMap(entity);
+        RemoveFromIdMap(entity);
+        RemoveFromIdList(entity);
 
-        // // Clear spaces on id map
-        for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
-            for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
+        entity.OnKill();
+        Destroy(entity.gameObject);
+        return true;
+    }
+    void RemoveFromTileMap(EntityBehaviour entity) {
+        tilemap.SetTile((Vector3Int)entity.Position, null);
+    }
+    void RemoveFromIdMap(EntityBehaviour entity) {
+        // for (int y = entity.Position.y; y <= entity.Position.y + entity.Height; y++) {
+        //     for (int x = entity.Position.x; x <= entity.Position.x + entity.Width; x++) {
+        //         entityIdMap.Remove(new Vector2Int(x, y));
+        //     }
+        // }
+
+        for (int y = entity.Extents.Min.y; y <= entity.Extents.Max.y; y++) {
+            for (int x = entity.Extents.Min.x; x <= entity.Extents.Max.x; x++) {
                 entityIdMap.Remove(new Vector2Int(x, y));
             }
         }
-        entity.OnKill();
-        Destroy(entity.gameObject);
+    }
+    void RemoveFromIdList(EntityBehaviour entity) {
         entityList.Remove(entity.Id);
-        return true;
     }
 
     // Returns entity object referenced to at position
