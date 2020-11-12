@@ -30,15 +30,17 @@ static class DirectionExtensions {
         if(dir == Direction.Null) {
             return Direction.Null;
         }
-        return (Direction)(((int)dir + 4 - val) % 4);
+        return (Direction)(((int)dir + 4 - val % 4) % 4);
     }
 
     public static Direction RotateCCW(this Direction dir, int val = 1) {
         if (dir == Direction.Null) {
             return Direction.Null;
         }
-        return (Direction)(((int)dir + 4 + val) % 4);
+        return (Direction)(((int)dir + 4 + val % 4) % 4);
     }
+
+
 
     // If diagonal, favors vertical directions
     // If zero vector, returns up

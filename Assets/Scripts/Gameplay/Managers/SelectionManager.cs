@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class SelectionManager : MonoBehaviour{
+public class SelectionManager : MonoBehaviour {
     public static SelectionManager Instance;
-    void Awake()
-    {
-        Instance = this;
-    }
     public Vector2Int HoveredTile {
         get {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -16,5 +12,18 @@ public class SelectionManager : MonoBehaviour{
         }
     }
     public Item ActiveItem;
+    public int SelecetedRotation { get; private set; } = 0;
+
+    void Awake() {
+        Instance = this;
+    }
+
+    void Update() {
+        if(Input.GetButtonDown("Rotate")) {
+            // SelecetedRotation--;
+            SelecetedRotation = (SelecetedRotation + 3) % 4;
+        }
+    }
+
 
 }
