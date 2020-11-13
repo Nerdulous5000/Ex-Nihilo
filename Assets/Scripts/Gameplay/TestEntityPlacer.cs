@@ -23,13 +23,15 @@ public class TestEntityPlacer : MonoBehaviour {
 
     void Update() {
         Vector2Int hoverPos = SelectionManager.Instance.HoveredTile;
-        if (Input.GetMouseButtonDown(0)) {
-
+        if(Input.GetMouseButtonDown(0)) {
             // Interact with Entity if already exists
             if (!EntityManager.Instance.IsNullAt(hoverPos)) {
                 EntityManager.Instance.At(hoverPos).OnUse();
             }
 
+        }
+        
+        if (Input.GetMouseButton(0)) {
             // Place 
             if (SelectionManager.Instance.ActiveItem != null) {
                 if (SelectionManager.Instance.ActiveItem.IsEntity) {
@@ -42,7 +44,7 @@ public class TestEntityPlacer : MonoBehaviour {
         }
 
         // Kill entity
-        if (Input.GetMouseButtonDown(1)) {
+        if (Input.GetMouseButton(1)) {
             bool killed = EntityManager.Instance.Kill(hoverPos);
             // if (!killed) {
             //     Debug.Log("Could not remove entity at location: " + hoverPos);
