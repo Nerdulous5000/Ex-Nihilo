@@ -62,17 +62,6 @@ public class EntityManager : MonoBehaviour {
         tilemap.SetTile((Vector3Int)entity.Position, entity.Tile);
     }
     void PlaceInIdMap(EntityBehaviour entity) {
-        // Vector2Int anchorPos = entity.Position;
-
-        // for (int y = entity.Position.y; y < entity.Position.y + entity.Height; y++) {
-        //     for (int x = entity.Position.x; x < entity.Position.x + entity.Width; x++) {
-        //         entityIdMap[new Vector2Int(x, y)] = entity.Id;
-        //     }
-        // }
-
-        // Vector3 offset = Quaternion.Euler(0, 0, 90 * entity.Rotation) * new Vector2(entity.Width, entity.Height);
-        // Vector2Int farPos = entity.Position + new Vector2Int(Mathf.FloorToInt(offset.x), Mathf.FloorToInt(offset.y));
-
 
         for (int y = entity.Extents.Min.y; y <= entity.Extents.Max.y; y++) {
             for (int x = entity.Extents.Min.x; x <= entity.Extents.Max.x; x++) {
@@ -85,14 +74,6 @@ public class EntityManager : MonoBehaviour {
     }
 
     public bool CanSpawn(EntityBehaviour entity) {
-
-        // for (int y = position.y; y < position.y + entity.Height; y++) {
-        //     for (int x = position.x; x < position.x + entity.Width; x++) {
-        //         if (!IsNullAt(new Vector2Int(x, y))) {
-        //             return false;
-        //         }
-        //     }
-        // }
 
         for (int y = entity.Extents.Min.y; y <= entity.Extents.Max.y; y++) {
             for (int x = entity.Extents.Min.x; x <= entity.Extents.Max.x; x++) {
@@ -123,12 +104,6 @@ public class EntityManager : MonoBehaviour {
         tilemap.SetTile((Vector3Int)entity.Position, null);
     }
     void RemoveFromIdMap(EntityBehaviour entity) {
-        // for (int y = entity.Position.y; y <= entity.Position.y + entity.Height; y++) {
-        //     for (int x = entity.Position.x; x <= entity.Position.x + entity.Width; x++) {
-        //         entityIdMap.Remove(new Vector2Int(x, y));
-        //     }
-        // }
-
         for (int y = entity.Extents.Min.y; y <= entity.Extents.Max.y; y++) {
             for (int x = entity.Extents.Min.x; x <= entity.Extents.Max.x; x++) {
                 entityIdMap.Remove(new Vector2Int(x, y));
