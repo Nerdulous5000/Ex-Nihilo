@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5460574680189344797}
-  - component: {fileID: 4328848775709626900}
+  - component: {fileID: -6867377300710891531}
   m_Layer: 0
-  m_Name: Storage
+  m_Name: Mover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4328848775709626900
+--- !u!114 &-6867377300710891531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,15 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4666850586562898805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756fc7f39a0caf74babaa053e6c6df0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 16329e414b5821e41bedd69a94d45357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 9f6e61c9ff2b56044b1b4aafff17e6be, type: 3}
-  Width: 2
-  Height: 2
-  startingInventory:
-  - {fileID: 11400000, guid: 1e6ded7297e9e754fa2fec82533f81cc, type: 2}
-  - {fileID: 11400000, guid: 1e6ded7297e9e754fa2fec82533f81cc, type: 2}
-  - {fileID: 11400000, guid: 1e6ded7297e9e754fa2fec82533f81cc, type: 2}
-  - {fileID: 11400000, guid: 1e6ded7297e9e754fa2fec82533f81cc, type: 2}
-  - {fileID: 11400000, guid: 1e6ded7297e9e754fa2fec82533f81cc, type: 2}
+  Sprite: {fileID: 21300000, guid: 64cc3caa11652a0409f48212d3f75d0f, type: 3}
+  Width: 1
+  Height: 1
+  moveDelay: 0

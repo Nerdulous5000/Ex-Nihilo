@@ -24,27 +24,17 @@ public class EntityBehaviour : MonoBehaviour {
     public Sprite Sprite;// { get { return data.Sprite; } }
     public int Width;// { get { return data.Width; } }
     public int Height;// { get { return data.Height; } }
-    // public ItemInterface Interface;// { get { return data.Interface; } }
+    public Inventory Inventory { get; protected set; }
     public virtual string TooltipString {
         get {
             return "Id: " + Id + "\nWidth: " + Width + "\nHeight: " + Height;
         }
     }
 
-    // TODO: Determine mandatory inventory on all entitybehaviours
-
-    [SerializeField]
-    protected Dictionary<Item, int> inventory = new Dictionary<Item, int>();
-
-
-    // [SerializeField]
-    // protected EntityData data;
     static uint idCount = 0;
-    // EntityManager manager;
 
     public void Initialize(Vector2Int position, int rotation) {
         Id = AssignId();
-        // instance.data = entityData;
         Position = position;
         Rotation = rotation;
         Tile tile = Tile.CreateInstance<Tile>();
@@ -61,6 +51,7 @@ public class EntityBehaviour : MonoBehaviour {
 
     public virtual void OnUse() {
         // Debug.Log("Entity did the thing");
+        Debug.Log("Inventory contains: \n" + Inventory.ToString());
     }
 
     public virtual void OnKill() {

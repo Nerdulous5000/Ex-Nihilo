@@ -7,8 +7,10 @@ public class Item : ScriptableObject {
     public Sprite Sprite;
     public string Name;
     // public bool IsEntity = false;
-    public bool IsEntity { get {return EntityName != "";}}
+    public bool IsEntity { get { return EntityName != ""; } }
     public string EntityName = "";
     public int Id;
+    public int StackSize;
+
 
 }

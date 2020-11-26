@@ -7,6 +7,6 @@ public static class EntityTable {
     {
         {"AirMiner", Resources.Load<EntityBehaviour>("Entities/AirMiner")},
         {"Storage", Resources.Load<EntityBehaviour>("Entities/Storage")},
-        {"Conveyor", Resources.Load<EntityBehaviour>("Entities/Conveyor")},
+        {"Mover", Resources.Load<EntityBehaviour>("Entities/Mover")},
     };
 }
