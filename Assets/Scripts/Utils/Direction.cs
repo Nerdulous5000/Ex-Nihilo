@@ -62,5 +62,34 @@ static class DirectionExtensions {
         }
     }
 
+    // Returns normalized vector in direction 
+    public static Vector2 ToVector2(this Direction dir) {
+        switch (dir) {
+            case Direction.Right:
+                return new Vector2(1, 0);
+            case Direction.Up:
+                return new Vector2(0, 1);
+            case Direction.Left:
+                return new Vector2(-1, 0);
+            case Direction.Down:
+                return new Vector2(0, -1);
+            default:
+                return new Vector2(0, 0);
+        }
+    }
+    public static Vector2Int ToVector2Int(this Direction dir) {
+        switch (dir) {
+            case Direction.Right:
+                return new Vector2Int(1, 0);
+            case Direction.Up:
+                return new Vector2Int(0, 1);
+            case Direction.Left:
+                return new Vector2Int(-1, 0);
+            case Direction.Down:
+                return new Vector2Int(0, -1);
+            default:
+                return new Vector2Int(0, 0);
+        }
+    }
 
 }
