@@ -16,3 +16,4 @@ MonoBehaviour:
   Name: Air Crystal
   EntityName: 
   Id: 2
+  StackSize: 0
