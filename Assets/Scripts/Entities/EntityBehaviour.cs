@@ -79,6 +79,11 @@ public class EntityBehaviour : MonoBehaviour {
         return adj;
     }
 
-
+    protected Direction DirectionLocalToGlobal(Direction dir) {
+        return dir.RotateCCW(Rotation);
+    }
+    protected Direction DirectionGlobalToLocal(Direction dir) {
+        return dir.RotateCW(Rotation);
+    }
 
 }
