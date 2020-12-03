@@ -18,9 +18,12 @@ public class Timer {
         }
     }
 
+    public bool Repeat { get; set; } = false;
+
     // Returns percent complete from 0 to 1
     public float AmountComplete { get { return maxTime != 0 ? (1.0f - currentTime / maxTime) : 1; } }
     public bool IsDone { get; private set; } = true;
+    public bool InProgress { get {return !IsDone;} }
     public TimeBlock TimeRemaining {
         get {
             return new TimeBlock(currentTime);
@@ -54,6 +57,10 @@ public class Timer {
                     _onFinishMethod();
                 }
                 IsDone = true;
+
+                if (Repeat) {
+                    Reset();
+                }
             }
         }
     }
