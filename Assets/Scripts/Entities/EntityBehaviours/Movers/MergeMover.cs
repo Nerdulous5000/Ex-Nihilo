@@ -36,16 +36,16 @@ public class MergeMover : Mover {
         bool pulled;
         switch (pullingDirection) {
             case PullDirection.Left:
-                given = PullItem(Direction.Left);
+                pulled = PullItem(Direction.Left);
                 break;
             case PullDirection.Right:
-                given = PullItem(Direction.Right);
+                pulled = PullItem(Direction.Right);
                 break;
             default:
-                given = PullItem(Direction.Right);
+                pulled = PullItem(Direction.Right);
                 break;
         }
-        if (given) {
+        if (pulled) {
             Debug.Log("Pulled Item.");
             ToggleSide();
         }
