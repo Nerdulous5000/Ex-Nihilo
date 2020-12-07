@@ -8,5 +8,8 @@ public static class EntityTable {
         {"AirMiner", Resources.Load<EntityBehaviour>("Entities/AirMiner")},
         {"Storage", Resources.Load<EntityBehaviour>("Entities/Storage")},
         {"Mover", Resources.Load<EntityBehaviour>("Entities/Mover")},
+        {"SplitMover", Resources.Load<EntityBehaviour>("Entities/SplitMover")},
+        {"MergeMover", Resources.Load<EntityBehaviour>("Entities/MergeMover")},
+        {"LongMover", Resources.Load<EntityBehaviour>("Entities/LongMover")},
     };
 }

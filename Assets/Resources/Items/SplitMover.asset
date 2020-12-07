@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f984d295cdf29e242a3c5c64b0e37feb, type: 3}
-  m_Name: Storage
+  m_Name: SplitMover
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 9f6e61c9ff2b56044b1b4aafff17e6be, type: 3}
-  Name: Storage Crate
-  EntityName: Storage
-  Id: 5
+  Sprite: {fileID: 21300000, guid: c0207fe387ddfd4438052c03b2d043a9, type: 3}
+  Name: Splitter
+  EntityName: SplitMover
+  Id: 6
   StackSize: 0

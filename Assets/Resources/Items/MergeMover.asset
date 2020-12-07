@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f984d295cdf29e242a3c5c64b0e37feb, type: 3}
-  m_Name: Storage
+  m_Name: MergeMover
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 9f6e61c9ff2b56044b1b4aafff17e6be, type: 3}
-  Name: Storage Crate
-  EntityName: Storage
-  Id: 5
+  Sprite: {fileID: 21300000, guid: d5a73e8104cc1c6458a0b7eaad570a73, type: 3}
+  Name: Merger
+  EntityName: MergeMover
+  Id: 4
   StackSize: 0
