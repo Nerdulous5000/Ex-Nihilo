@@ -14,7 +14,7 @@ public class EntityTooltipDisplay : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        EntityBehaviour selectedEntity = EntityManager.Instance.At(SelectionManager.Instance.HoveredTile);
+        Entities.EntityBehaviour selectedEntity = Entities.EntityManager.Instance.At(SelectionManager.Instance.HoveredTile);
         if (selectedEntity != null) {
             TooltipImage.sprite = selectedEntity.Sprite;
             TooltipText.text = selectedEntity.TooltipString;
